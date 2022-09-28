@@ -1,8 +1,9 @@
 import cors from "cors";
-import express, { Application, NextFunction, Request, Response } from "express";
+import express, { Application } from "express";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import Routes from './routes';
+import { errorHandler } from './shared/middleware';
 import swagger from './swagger.json';
 const PORT = process.env.PORT || 3000;
 
@@ -22,11 +23,7 @@ app.use(
 );
 
 app.use('/api', Routes);
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-	console.log(err.stack);    // e.g., Not valid name
-	return res.status(500).send('Internal Server Occured');
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log("Server is running on port", PORT);
