@@ -21,9 +21,16 @@ import { reducers } from './reducers';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictActionTypeUniqueness: true
+      }
+    }),
     EffectsModule.forRoot([TransactionEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 25 })
   ],
   providers: [TransactionService],
   bootstrap: [AppComponent]

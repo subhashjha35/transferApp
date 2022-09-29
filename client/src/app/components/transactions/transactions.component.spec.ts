@@ -1,22 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { TransactionsComponent } from './transactions.component';
 
 describe('TransactionsComponent', () => {
+  let spectator: Spectator<TransactionsComponent>;
   let component: TransactionsComponent;
-  let fixture: ComponentFixture<TransactionsComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TransactionsComponent ]
-    })
-    .compileComponents();
-  });
+  let store: MockStore;
+  const createComponent = createComponentFactory<TransactionsComponent>({
+    component: TransactionsComponent,
+    imports: [],
+    providers: [
+      provideMockStore({ }),
+    ],
+    declarations: []
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransactionsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
+    component = spectator.component;
   });
 
   it('should create', () => {

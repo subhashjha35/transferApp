@@ -2,9 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { TransactionService } from '../services/api/transaction.service';
 import * as transactionActions from './../actions/transaction.actions';
+import { parseErrorMessage } from './../helpers/error-message.parser';
 
 @Injectable()
 export class TransactionEffects {
@@ -16,7 +18,7 @@ export class TransactionEffects {
       switchMap(action =>
         this.service.getAllTransactions().pipe(
           map(transactions => transactionActions.listTransactionsSuccess({ transactions })),
-          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.listTransactionsFailed({ message: error.message })))
+          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.listTransactionsFailed({ message: parseErrorMessage(error) })))
         )
       )
     )
@@ -28,7 +30,7 @@ export class TransactionEffects {
       switchMap(action =>
         this.service.createTransaction(action.transaction).pipe(
           map(transaction =>transactionActions.createTransactionSuccess({ transaction })),
-          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.createTransactionFailed({ message: error.message })))
+          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.createTransactionFailed({ message: parseErrorMessage(error) })))
         )
       )
     )
@@ -40,7 +42,7 @@ export class TransactionEffects {
       switchMap(action =>
         this.service.updateTransaction(action.id, action.transaction).pipe(
           map(transaction => transactionActions.updateTransactionSuccess({ transaction })),
-          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.updateTransactionFailed({ message: error.message })))
+          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.updateTransactionFailed({ message: parseErrorMessage(error) })))
         )
       )
     )
@@ -52,7 +54,7 @@ export class TransactionEffects {
       switchMap(action =>
         this.service.deleteTransaction(action.transactionId).pipe(
           map(() => transactionActions.deleteTransactionSuccess()),
-          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.deleteTransactionFailed({ message: error.message })))
+          catchError((error: HttpErrorResponse) => of<Action>(transactionActions.deleteTransactionFailed({ message: parseErrorMessage(error) })))
         )
       )
     )

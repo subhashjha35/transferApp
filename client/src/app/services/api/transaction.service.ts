@@ -34,7 +34,7 @@ import { Configuration }                                     from '../configurat
 })
 export class TransactionService {
 
-    protected basePath = 'http://localhost:8000';
+    protected basePath = 'http://localhost:3000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;

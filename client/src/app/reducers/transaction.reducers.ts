@@ -14,7 +14,7 @@ export const initialState: TransactionState = {
   isLoaded: false
 };
 
-const reducers = createReducer(
+const transactionReducers = createReducer(
   initialState,
   on(fromActions.listTransactions, (state, action) => ({
     ...state,
@@ -45,9 +45,9 @@ const reducers = createReducer(
 
 );
 
-export function transactionReducers(
+export function reducers(
   state = initialState,
   action: Action
 ): TransactionState {
-  return reducers(state, action);
+  return transactionReducers(state, action);
 }
