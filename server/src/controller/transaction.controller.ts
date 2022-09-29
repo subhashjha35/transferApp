@@ -11,6 +11,9 @@ export default class TransactionController {
 
     @Get('/getAll')
     public async getAllTransactions(): Promise<TransactionResponse[]> {
+		if (!this.data) {
+			throw new HttpException(400, 'Could not connect to Transaction Data file');
+		}
         return this.data;
     }
 
