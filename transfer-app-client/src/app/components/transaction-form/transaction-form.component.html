@@ -20,21 +20,21 @@
     <ion-item lines="full">
       <ion-label position="floating">Amount</ion-label>
       <ion-input formControlName="amount" type="text"></ion-input>
-      <span slot="error" *ngIf="transactionForm.get('account_holder').hasError('required')">Name is required</span>
+      <span slot="error" *ngIf="transactionForm.get('account_holder').hasError('required')">Amount is required</span>
 
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Transaction Date</ion-label>
-      <ion-datetime (ionChange)="{}" formControlName="date" [value]="12/5/2021"></ion-datetime>
+      <ion-datetime (ionChange)="{}" formControlName="date"></ion-datetime>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">IBAN</ion-label>
       <ion-input formControlName="iban" type="text" required></ion-input>
-      <span slot="error" *ngIf="transactionForm.get('account_holder').hasError('required')">Name is required</span>
+      <span slot="error" *ngIf="transactionForm.get('account_holder').hasError('required')">IBAN is required</span>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Note</ion-label>
-      <ion-textarea formControlName="note" type="text" required></ion-textarea>
+      <ion-textarea formControlName="note" type="text"></ion-textarea>
     </ion-item>
   </form>
 </ion-content>

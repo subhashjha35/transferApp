@@ -8,28 +8,28 @@
 
 <ion-content>
   <ion-accordion-group>
-    <ion-accordion value={{i}} *ngFor="let data of data; index as i">
+    <ion-accordion [value]="i" *ngFor="let data of data; index as i">
       <ion-item slot="header" color="light">
         <ion-grid>
           <ion-row class="trans_accord">
             <ion-col size="1">
               <ion-icon name="pencil-outline" color="primary" (click)="editTransaction($event, data)"></ion-icon>
             </ion-col>
-            <ion-col size="4">{{data.account_holder}}</ion-col>
-            <ion-col size="4">{{data.amount}}</ion-col>
+            <ion-col size="4">{{ data.account_holder }}</ion-col>
+            <ion-col size="4">{{ data.amount }}</ion-col>
             <ion-col size="1">
-              <ion-icon name="trash-outline" color="danger"></ion-icon>
+              <ion-icon name="trash-outline" color="danger" (click)="deleteTransaction($event, data.id)"></ion-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
       <div slot="content">
         <ion-row>
-          <ion-col><strong>Date: </strong>{{data.date}}</ion-col>
-          <ion-col><strong>IBAN: </strong>{{data.iban }}</ion-col>
+          <ion-col><strong>Date: </strong>{{ data.date | date : 'dd-MM-yyyy' }}</ion-col>
+          <ion-col><strong>IBAN: </strong>{{ data.iban | ibanFormatter }}</ion-col>
         </ion-row>
         <ion-row>
-          <ion-col><strong>Note: </strong>{{data.note}}</ion-col>
+          <ion-col><strong>Note: </strong>{{ data.note }}</ion-col>
         </ion-row>
       </div>
     </ion-accordion>
@@ -40,9 +40,3 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    asdf
-  </ion-toolbar>
-</ion-footer>

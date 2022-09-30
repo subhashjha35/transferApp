@@ -1,6 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { ValidatorService } from 'angular-iban';
 
 export interface Transaction {
   account_holder: string;
@@ -26,8 +28,15 @@ export class TransactionFormComponent implements OnInit {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
+  formatDate(date: Date, format: string) {
+    const pipe = new DatePipe('en-US');
+    return pipe.transform(date, format)
+  }
+
   save() {
-    const formValues = this.transactionForm.value;
+    const formValues = {
+      ...this.transactionForm.value,
+      date: this.formatDate(this.transactionForm.get('date').value, 'yyyy-MM-dd') };
     return this.modalCtrl.dismiss(formValues, 'save');
   }
 
@@ -36,7 +45,7 @@ export class TransactionFormComponent implements OnInit {
       'account_holder': new FormControl('', Validators.required),
       'amount': new FormControl('', Validators.required),
       'date': new FormControl('', Validators.required),
-      'iban': new FormControl('', Validators.required),
+      'iban': new FormControl('', Validators.compose([Validators.required, ValidatorService.validateIban])),
       'note': new FormControl('')
     })
 
@@ -46,7 +55,6 @@ export class TransactionFormComponent implements OnInit {
       this.transactionForm.get('date').setValue(this.transaction.date);
       this.transactionForm.get('iban').setValue(this.transaction.iban);
       this.transactionForm.get('note').setValue(this.transaction.note);
-      this.transactionForm.updateValueAndValidity();
     }
   }
 

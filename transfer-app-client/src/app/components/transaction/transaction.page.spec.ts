@@ -1,22 +1,28 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
-
+import { AlertController, ModalController } from '@ionic/angular';
+import { createComponentFactory, mockProvider, Spectator } from '@ngneat/spectator';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { TransactionPage } from './transaction.page';
 
 describe('TransactionPage', () => {
+  let spectator: Spectator<TransactionPage>;
   let component: TransactionPage;
-  let fixture: ComponentFixture<TransactionPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [TransactionPage],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+  let store: MockStore;
+  const createComponent = createComponentFactory<TransactionPage>({
+    component: TransactionPage,
+    imports: [],
+    declarations: [],
+    providers: [
+      provideMockStore({}),
+      mockProvider(ModalController),
+      mockProvider(AlertController)
+    ],
+  })
 
-    fixture = TestBed.createComponent(TransactionPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+  beforeEach(() => {
+    spectator = createComponent();
+    component = spectator.component;
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

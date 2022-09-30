@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ofType } from '@ngrx/effects';
 import { ActionsSubject, Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { createTransaction, deleteTransactionSuccess, listTransactions } from 'src/app/actions/transaction.actions';
+import { createTransaction, deleteTransaction, deleteTransactionSuccess, listTransactions } from 'src/app/actions/transaction.actions';
 import { getAllTransactions } from 'src/app/reducers';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
 import { updateTransaction, updateTransactionSuccess } from './../../../../../client/src/app/actions/transaction.actions';
@@ -24,10 +24,10 @@ export interface Transaction {
   styleUrls: ['transaction.page.scss']
 })
 export class TransactionPage implements OnInit, OnDestroy {
-  data: Transaction[];
+  data: TransactionResponse[];
   private componentDestroyed = new Subject();
 
-  constructor(private modalCtrl: ModalController, private store: Store, private actions$: ActionsSubject) { }
+  constructor(private alertControl: AlertController, private modalCtrl: ModalController, private store: Store, private actions$: ActionsSubject) { }
 
   ngOnInit(): void {
     this.actions$
@@ -73,6 +73,32 @@ export class TransactionPage implements OnInit, OnDestroy {
     if (role === 'save') {
       this.store.dispatch(createTransaction({ transaction: data }))
     }
+  }
+
+  async deleteTransaction(e: Event, id: string) {
+    e.stopPropagation();
+    // const modal = await this.modalCtrl.dismiss;
+    const alert = await this.alertControl.create({
+      header: 'Confirm Alert',
+      subHeader: 'Beware lets confirm',
+      message: 'Are you sure to delete this transaction',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('I care about humanity');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.store.dispatch(deleteTransaction({ transactionId: id }))
+          }
+        }
+      ]
+    }).then(res => {
+      res.present();
+    });
   }
 
   ngOnDestroy() {
