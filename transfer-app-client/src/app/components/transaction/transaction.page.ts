@@ -1,6 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ofType } from '@ngrx/effects';
+import { ActionsSubject, Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { createTransaction, deleteTransactionSuccess, listTransactions } from 'src/app/actions/transaction.actions';
+import { getAllTransactions } from 'src/app/reducers';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
+import { updateTransaction, updateTransactionSuccess } from './../../../../../client/src/app/actions/transaction.actions';
+import { TransactionResponse } from './../../../../../client/src/app/services/model/transactionResponse';
 
 export interface Transaction {
   account_holder: string;
@@ -15,16 +23,28 @@ export interface Transaction {
   templateUrl: 'transaction.page.html',
   styleUrls: ['transaction.page.scss']
 })
-export class TransactionPage implements OnInit {
-
-  constructor(private modalCtrl: ModalController) { }
+export class TransactionPage implements OnInit, OnDestroy {
   data: Transaction[];
+  private componentDestroyed = new Subject();
+
+  constructor(private modalCtrl: ModalController, private store: Store, private actions$: ActionsSubject) { }
 
   ngOnInit(): void {
-    fetch('../../assets/transactions.json').then(t => t.json()).then(data => this.data = data)
+    this.actions$
+      .pipe(
+        ofType(deleteTransactionSuccess, updateTransactionSuccess),
+        takeUntil(this.componentDestroyed)
+      )
+      .subscribe(() => {
+        this.store.dispatch(listTransactions());
+      });
+    this.store.dispatch(listTransactions());
+    this.store.select(getAllTransactions).pipe(
+      takeUntil(this.componentDestroyed)
+    ).subscribe(transactions => this.data = transactions);
   }
 
-  async editTransaction(e: Event, transaction: Transaction) {
+  async editTransaction(e: Event, transaction: TransactionResponse) {
     e.stopPropagation();
 
     const modal = await this.modalCtrl.create({
@@ -37,7 +57,7 @@ export class TransactionPage implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'save') {
-
+      this.store.dispatch(updateTransaction({ id: transaction.id, transaction: data }))
     }
   }
 
@@ -51,8 +71,12 @@ export class TransactionPage implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'save') {
-
+      this.store.dispatch(createTransaction({ transaction: data }))
     }
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed.complete();
   }
 
 }
