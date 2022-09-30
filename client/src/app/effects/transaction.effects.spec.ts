@@ -16,7 +16,6 @@ describe('TransactionEffects', () => {
     let store: Store<any>;
     let actions$ = new Observable<Action>();
 
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [StoreModule.forRoot({}), EffectsModule.forRoot([TransactionEffects])],
@@ -55,7 +54,7 @@ describe('TransactionEffects', () => {
             marbles(async m => {
                 actions$ = m.cold('a', { a: listTransactions() });
 
-                serviceSpy.getAllTransactions.and.returnValue(m.cold('#', { a: new Error('error') }));
+              serviceSpy.getAllTransactions.and.returnValue(m.cold('#', { a: new Error('error') }));
                 const expected = m.cold('a', {
                     a: listTransactionsFailed({ message: 'error' }),
                 });
@@ -85,7 +84,7 @@ describe('TransactionEffects', () => {
         );
 
         it(
-            'can handle transaction list fetching errors',
+            'can handle transaction creation fetching errors',
             marbles(async m => {
                 actions$ = m.cold('a', { a: createTransaction({ transaction: {} as any }) });
 
@@ -119,11 +118,11 @@ describe('TransactionEffects', () => {
         );
 
         it(
-            'can handle transaction update fetching errors',
+            'can handle transaction update errors',
             marbles(async m => {
                 actions$ = m.cold('a', { a: updateTransaction({ id: 'testId', transaction: {} as any }) });
 
-                serviceSpy.updateTransaction.and.returnValue(m.cold('#', { a: new Error('error') }));
+              serviceSpy.updateTransaction.and.returnValue(m.cold('#', { a: new Error('error') }));
                 const expected = m.cold('a', {
                     a: updateTransactionFailed({ message: 'error' }),
                 });
@@ -137,7 +136,7 @@ describe('TransactionEffects', () => {
 
     describe('deleteTransaction', () => {
         it(
-            'can list all the transactions',
+            'can delete a transaction',
             marbles(async m => {
                 actions$ = m.cold('a', { a: deleteTransaction({ transactionId: 'testId' }) });
 
@@ -153,11 +152,11 @@ describe('TransactionEffects', () => {
         );
 
         it(
-            'can handle transaction list fetching errors',
+            'can handle transaction deletion errors',
             marbles(async m => {
                 actions$ = m.cold('a', { a: deleteTransaction({ transactionId: 'testId' }) });
 
-                serviceSpy.deleteTransaction.and.returnValue(m.cold('#', { a: new Error('error') }));
+              serviceSpy.deleteTransaction.and.returnValue(m.cold('#', { a: new Error('error') }));
                 const expected = m.cold('a', {
                     a: deleteTransactionFailed({ message: 'error' }),
                 });

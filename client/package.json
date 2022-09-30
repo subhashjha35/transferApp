@@ -22,7 +22,9 @@
     "@ngrx/effects": "13.2.0",
     "@ngrx/store": "13.2.0",
     "@ngrx/store-devtools": "13.2.0",
-    "rxjs": "~7.5.0",
+    "rxjs": "^6.6.7",
+    "rxjs-compat": "^6.6.7",
+    "rxjs-marbles": "^6.0.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -42,7 +44,6 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "ngrx-store-logger": "^0.2.4",
-    "rxjs-marbles": "^7.0.1",
     "typescript": "~4.6.2"
   }
 }

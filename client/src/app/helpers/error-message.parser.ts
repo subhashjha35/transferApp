@@ -4,6 +4,8 @@ export const parseErrorMessage = (response: any): any => {
     return response;
   } else if (!!response?.error?.error) {
     message = response.error.error;
+  } else if (!!response?.error?.message) {
+    message = response.error.message;
   } else if (!!response?.error) {
     message = response?.error;
   } else if (!!response?.message) {

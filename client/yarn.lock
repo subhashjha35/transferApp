@@ -2329,9 +2329,9 @@ camelcase@^5.3.1:
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 caniuse-lite@^1.0.30001299, caniuse-lite@^1.0.30001400, caniuse-lite@^1.0.30001407:
-  version "1.0.30001412"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001412.tgz#30f67d55a865da43e0aeec003f073ea8764d5d7c"
-  integrity sha512-+TeEIee1gS5bYOiuf+PS/kp2mrXic37Hl66VY6EAfxasIk5fELTktK2oOezYed12H8w7jt3s512PpulQidPjwA==
+  version "1.0.30001414"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001414.tgz#5f1715e506e71860b4b07c50060ea6462217611e"
+  integrity sha512-t55jfSaWjCdocnFdKQoO+d2ct9C59UZg4dY3OnUlSZ447r8pUtIKdp0hpAzrGFultmTC+Us+KpKi4GZl/LXlFg==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -2959,9 +2959,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.4.251:
-  version "1.4.265"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.265.tgz#45630ae190228f945ff79c060b99574b1347e5a7"
-  integrity sha512-38KaYBNs0oCzWCpr6j7fY/W9vF0vSp4tKFIshQTgdZMhUpkxgotkQgjJP6iGMdmlsgMs3i0/Hkko4UXLTrkYVQ==
+  version "1.4.269"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.269.tgz#93ea2724b07f5f562daa7dd3740a1d28572b028b"
+  integrity sha512-7mHFONwp7MNvdyto1v70fCwk28NJMFgsK79op+iYHzz1BLE8T66a1B2qW5alb8XgE0yi3FL3ZQjSYZpJpF6snw==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -4472,9 +4472,9 @@ magic-string@0.25.7:
     sourcemap-codec "^1.4.4"
 
 magic-string@^0.26.0:
-  version "0.26.4"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.4.tgz#3d057d3d0234c3b179aa3f421b33fe5d8a4044a8"
-  integrity sha512-e5uXtVJ22aEpK9u1+eQf0fSxHeqwyV19K+uGnlROCxUhzwRip9tBsaMViK/0vC3viyPd5Gtucp3UmEp/Q2cPTQ==
+  version "0.26.5"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.5.tgz#3ceb5c60f546ba4e21e3865ab8de4d32bd8ed07f"
+  integrity sha512-yXUIYOOQnEHKHOftp5shMWpB9ImfgfDJpapa38j/qMtTj5QHWucvxP4lUtuRmHT9vAzvtpHkWKXW9xBwimXeNg==
   dependencies:
     sourcemap-codec "^1.4.8"
 
@@ -5525,9 +5525,9 @@ postcss@8.4.5:
     source-map-js "^1.0.1"
 
 postcss@^8.2.14, postcss@^8.2.15, postcss@^8.3.7:
-  version "8.4.16"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.16.tgz#33a1d675fac39941f5f445db0de4db2b6e01d43c"
-  integrity sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==
+  version "8.4.17"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.17.tgz#f87863ec7cd353f81f7ab2dec5d67d861bbb1be5"
+  integrity sha512-UNxNOLQydcOFi41yHNMcKRZ39NeXlr8AxGuZJsdub8vIb12fHzcq37DTU/QtbI6WLxNg2gF9Z+8qtRwTj1UI1Q==
   dependencies:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
@@ -5856,10 +5856,15 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-rxjs-marbles@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/rxjs-marbles/-/rxjs-marbles-7.0.1.tgz#92e99366a26497197f0c701ff944dc46ba876487"
-  integrity sha512-QBJcNSml6uqx1BunqQOA2Nwh8jSFwbLF+w7b13WVC/XkheTjGrqzR6GvkES1+7DEjH58nVi4qO9KxKIofgngQQ==
+rxjs-compat@^6.6.7:
+  version "6.6.7"
+  resolved "https://registry.yarnpkg.com/rxjs-compat/-/rxjs-compat-6.6.7.tgz#6eb4ef75c0a58ea672854a701ccc8d49f41e69cb"
+  integrity sha512-szN4fK+TqBPOFBcBcsR0g2cmTTUF/vaFEOZNuSdfU8/pGFnNmmn2u8SystYXG1QMrjOPBc6XTKHMVfENDf6hHw==
+
+rxjs-marbles@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/rxjs-marbles/-/rxjs-marbles-6.0.1.tgz#aef219bd51e1e65caf811c267a05f729e04a1c8e"
+  integrity sha512-k9bqj3oRHDRIwnoetpifxXfWRM10Udd1RxgdYLltrE8FmRmKzaHLzxv8oabUlWhQj4/2sfHNR/y7UuhPIcODwA==
   dependencies:
     fast-equals "^2.0.0"
     rxjs-report-usage "^1.0.4"
@@ -5877,7 +5882,7 @@ rxjs-report-usage@^1.0.4:
     glob "~7.2.0"
     prompts "~2.4.2"
 
-rxjs@6.6.7, rxjs@^6.6.3:
+rxjs@6.6.7, rxjs@^6.6.3, rxjs@^6.6.7:
   version "6.6.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
@@ -5891,7 +5896,7 @@ rxjs@7.5.5:
   dependencies:
     tslib "^2.1.0"
 
-rxjs@^7.2.0, rxjs@^7.5.5, rxjs@~7.5.0:
+rxjs@^7.2.0, rxjs@^7.5.5:
   version "7.5.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.5.7.tgz#2ec0d57fdc89ece220d2e702730ae8f1e49def39"
   integrity sha512-z9MzKh/UcOqB3i20H6rtrlaE/CgjLOvheWK/9ILrbhROGTweAi1BaFsTT9FbwZi5Trr1qNRs+MXkhmR06awzQA==
