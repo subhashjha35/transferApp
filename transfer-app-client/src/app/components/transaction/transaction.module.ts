@@ -8,14 +8,14 @@ import { TransactionPage } from './transaction.page';
 import { TransactionRoutingModule } from './transaction.routing.module';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    TransactionRoutingModule,
-    AngularIbanModule
-  ],
-  declarations: [TransactionPage],
-  providers: [IbanFormatterPipe]
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        TransactionRoutingModule,
+        AngularIbanModule,
+    ],
+    declarations: [TransactionPage],
+    providers: [IbanFormatterPipe],
 })
 export class TransactionModule {}

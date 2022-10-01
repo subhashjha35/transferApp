@@ -18,26 +18,31 @@ import { metaReducers, reducers } from './reducers';
 import { TransactionService } from './services';
 
 @NgModule({
-  declarations: [AppComponent, TransactionFormComponent],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictActionTypeUniqueness: true
-      }
-    }),
-    EffectsModule.forRoot([TransactionEffects]),
-    environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 25 })
-  ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, TransactionService],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent, TransactionFormComponent],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+                strictActionTypeUniqueness: true,
+            },
+        }),
+        EffectsModule.forRoot([TransactionEffects]),
+        environment.production
+            ? []
+            : StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    ],
+    providers: [
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        TransactionService,
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
