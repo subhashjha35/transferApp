@@ -12,7 +12,6 @@ router.get("/transaction/getAll", async (req, res, next) => {
 
 router.post("/transaction", async (req, res, next) => {
     const response = await controller.createTransaction(req.body);
-    console.log(response, typeof response);
     if (response instanceof Error) {
         return res.status(400).send(response);
     }
