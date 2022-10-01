@@ -49,14 +49,14 @@ const transactionsData = [
         iban: 'IT60X0542811101000000123456',
         note: 'sdadf sdfasdf',
         id: 'cbe414c29366bdd4'
-    }]
+    }];
 const initialState: AppState = {
     transactions: {
         list: transactionsData,
         isLoaded: true,
         isLoading: false
     }
-}
+};
 describe('TransactionPage', () => {
     let spectator: Spectator<TransactionPage>;
     let component: TransactionPage;
@@ -104,7 +104,7 @@ describe('TransactionPage', () => {
 
     afterAll(() => {
       spectator.fixture.destroy();
-    })
+    });
 
     it('should create', () => {
         expect(component).toBeTruthy();
@@ -117,7 +117,7 @@ describe('TransactionPage', () => {
         });
         afterEach(() => {
           spectator.fixture.destroy();
-        })
+        });
 
         it('should call the listTransaction action', () => {
             expect(store.dispatch).toHaveBeenCalledWith(listTransactions());
@@ -135,15 +135,15 @@ describe('TransactionPage', () => {
     });
 
     describe('createTransaction', () => {
-      it('should contain dispatch the createTransaction action', async() => {
+      it('should contain dispatch the createTransaction action', async () => {
         modalControllerSpy.create.and.returnValue({
           present: () => {},
           onWillDismiss: () => ({ data: transactionsData[0], role: 'save' })
         });
 
         await component.createTransaction();
-        expect(store.dispatch).toHaveBeenCalledWith(createTransaction({ transaction: transactionsData[0] }))
-      })
+        expect(store.dispatch).toHaveBeenCalledWith(createTransaction({ transaction: transactionsData[0] }));
+      });
     });
 
     describe('deleteTransaction', () => {
@@ -152,11 +152,11 @@ describe('TransactionPage', () => {
                 create: () => { },
                 present: () => { },
                 onWillDismiss: () => ({ data: null, role: 'confirm' })
-            })
+            });
 
             const event = new MouseEvent('click');
             await component.deleteTransaction(event, transactionsData[0].id);
-            expect(dispatchSpy).toHaveBeenCalledWith(deleteTransaction({ transactionId: transactionsData[0].id }))
+            expect(dispatchSpy).toHaveBeenCalledWith(deleteTransaction({ transactionId: transactionsData[0].id }));
         });
     });
 
@@ -169,16 +169,16 @@ describe('TransactionPage', () => {
                 iban: 'ES9121000418450200051332',
                 note: 'sdasdfasdfasdf',
                 id: '1ff15a27cb28b088'
-            }
+            };
             modalControllerSpy.create.and.returnValue({
                 create: () => { },
                 present: () => { },
-                onWillDismiss: () => ({ data: data, role: 'save' })
-            })
+                onWillDismiss: () => ({ data, role: 'save' })
+            });
 
             const event = new MouseEvent('click');
             await component.editTransaction(event, transactionsData[0]);
-            expect(dispatchSpy).toHaveBeenCalledWith(updateTransaction({ id: data.id, transaction: data }))
+            expect(dispatchSpy).toHaveBeenCalledWith(updateTransaction({ id: data.id, transaction: data }));
         });
     });
 });

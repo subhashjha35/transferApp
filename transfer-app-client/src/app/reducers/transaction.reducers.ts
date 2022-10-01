@@ -43,9 +43,7 @@ const transactionReducers = createReducer(
     }))
 );
 
-export function reducers(
+export const reducers = (
     state = initialState,
     action: Action
-): TransactionState {
-    return transactionReducers(state, action);
-}
+): TransactionState => transactionReducers(state, action);

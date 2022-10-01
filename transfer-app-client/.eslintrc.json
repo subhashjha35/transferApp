@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
+          "**/tsconfig.json",
+          "**/e2e/tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -21,6 +21,7 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@typescript-eslint/naming-convention": "off",
         "@angular-eslint/component-class-suffix": [
           "error",
           {

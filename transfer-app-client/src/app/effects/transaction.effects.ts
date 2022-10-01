@@ -10,11 +10,6 @@ import { parseErrorMessage } from './../helpers/error-message.parser';
 
 @Injectable()
 export class TransactionEffects {
-    constructor(
-        private actions$: Actions,
-        private service: TransactionService
-    ) {}
-
     listTransactions$ = createEffect(() =>
         this.actions$.pipe(
             ofType(transactionActions.listTransactions),
@@ -100,4 +95,9 @@ export class TransactionEffects {
             )
         )
     );
+
+  constructor(
+    private actions$: Actions,
+    private service: TransactionService
+  ) { }
 }
