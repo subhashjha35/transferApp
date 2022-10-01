@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core';
 import { Configuration } from './configuration';
+import { HttpClient } from '@angular/common/http';
 
+import { TransactionService } from './api/transaction.service';
 
 @NgModule({
   imports:      [],
