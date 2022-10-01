@@ -8,15 +8,13 @@ import {
   createTransaction,
   deleteTransaction,
   deleteTransactionSuccess,
-  listTransactions
-} from 'src/app/actions/transaction.actions';
-import { getAllTransactions } from 'src/app/reducers';
-import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
-import {
+  listTransactions,
   updateTransaction,
   updateTransactionSuccess
-} from './../../../../../client/src/app/actions/transaction.actions';
-import { TransactionResponse } from './../../../../../client/src/app/services/model/transactionResponse';
+} from 'src/app/actions/transaction.actions';
+import { TransactionFormComponent } from 'src/app/components/transaction-form/transaction-form.component';
+import { getAllTransactions } from 'src/app/reducers';
+import { TransactionResponse } from 'src/app/services/model/transactionResponse';
 
 @Component({
     selector: 'app-transaction-page',

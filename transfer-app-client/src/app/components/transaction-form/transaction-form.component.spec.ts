@@ -1,4 +1,3 @@
-import { FormBuilder } from '@angular/forms';
 import {
     IonButton,
     IonButtons,
@@ -11,13 +10,13 @@ import {
     IonTextarea,
     IonTitle,
     IonToolbar,
-    ModalController,
+    ModalController
 } from '@ionic/angular';
 import {
     createComponentFactory,
     mockProvider,
     Spectator,
-    SpyObject,
+    SpyObject
 } from '@ngneat/spectator';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { MockComponents } from 'ng-mocks';
@@ -50,7 +49,6 @@ describe('TransactionFormComponent', () => {
         ],
         providers: [
             provideMockStore({}),
-            mockProvider(FormBuilder),
             mockProvider(ModalController),
         ],
     });

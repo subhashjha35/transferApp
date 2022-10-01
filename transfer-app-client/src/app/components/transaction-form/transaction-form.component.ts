@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   Validators
@@ -27,7 +26,7 @@ export class TransactionFormComponent implements OnInit {
 
     name: string;
     transactionForm: FormGroup;
-    constructor(private modalCtrl: ModalController, private fb: FormBuilder) {}
+    constructor(private modalCtrl: ModalController) {}
 
     cancel() {
         return this.modalCtrl.dismiss(null, 'cancel');
