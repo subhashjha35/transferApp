@@ -1,10 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
 } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ValidatorService } from 'angular-iban';
@@ -39,7 +39,6 @@ export class TransactionFormComponent implements OnInit {
     }
 
     save() {
-        console.log('date', this.transactionForm.get('date').value);
         const formValues = {
             ...this.transactionForm.value,
             date: this.formatDate(

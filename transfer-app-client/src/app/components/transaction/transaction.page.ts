@@ -5,26 +5,18 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
-    createTransaction,
-    deleteTransaction,
-    deleteTransactionSuccess,
-    listTransactions,
+  createTransaction,
+  deleteTransaction,
+  deleteTransactionSuccess,
+  listTransactions
 } from 'src/app/actions/transaction.actions';
 import { getAllTransactions } from 'src/app/reducers';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
 import {
-    updateTransaction,
-    updateTransactionSuccess,
+  updateTransaction,
+  updateTransactionSuccess
 } from './../../../../../client/src/app/actions/transaction.actions';
 import { TransactionResponse } from './../../../../../client/src/app/services/model/transactionResponse';
-
-export interface Transaction {
-    account_holder: string;
-    iban: string;
-    date: string;
-    amount: string;
-    note: string;
-}
 
 @Component({
     selector: 'app-transaction-page',
@@ -68,9 +60,7 @@ export class TransactionPage implements OnInit, OnDestroy {
         });
 
         modal.present();
-
         const { data, role } = await modal.onWillDismiss();
-        console.log(data, role);
         if (role === 'save') {
             this.store.dispatch(
                 updateTransaction({ id: transaction.id, transaction: data })
@@ -112,19 +102,13 @@ export class TransactionPage implements OnInit, OnDestroy {
                     role: 'confirm',
                     handler: () => {
                         this.alertControl.dismiss(null, 'confirm');
-                        this.store.dispatch(
-                            deleteTransaction({ transactionId: id })
-                        );
                     },
                 },
             ],
         });
-
         alert.present();
         const { role } = await alert.onWillDismiss();
-        console.log(role);
         if (role === 'confirm') {
-            console.log('confirmed');
             this.store.dispatch(deleteTransaction({ transactionId: id }));
         }
     }

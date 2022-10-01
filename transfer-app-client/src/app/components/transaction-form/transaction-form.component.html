@@ -1,61 +1,48 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-        </ion-buttons>
-        <ion-title>Create Transaction</ion-title>
-        <ion-buttons slot="end">
-            <ion-button [disabled]="!transactionForm.valid" (click)="save()"
-                >Save</ion-button
-            >
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Create Transaction</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!transactionForm.valid" (click)="save()">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-    <form [formGroup]="transactionForm" (ngSubmit)="save()" novalidate>
-        <ion-item lines="full">
-            <ion-label position="floating">Account Holder Name</ion-label>
-            <ion-input formControlName="account_holder" type="text"></ion-input>
-            <span
-                slot="error"
-                *ngIf="
-                    transactionForm.get('account_holder').hasError('required')
-                "
-                >Name is required</span
-            >
-        </ion-item>
+  <form [formGroup]="transactionForm" (ngSubmit)="save()" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Account Holder Name</ion-label>
+      <ion-input formControlName="account_holder" type="text"></ion-input>
+      <span slot="error" *ngIf="
+          transactionForm.get('account_holder').hasError('required') &&
+          transactionForm.get('account_holder').touched
+      ">Name is required</span>
+    </ion-item>
 
-        <ion-item lines="full">
-            <ion-label position="floating">Amount</ion-label>
-            <ion-input formControlName="amount" type="text"></ion-input>
-            <span
-                slot="error"
-                *ngIf="
-                    transactionForm.get('account_holder').hasError('required')
-                "
-                >Amount is required</span
-            >
-        </ion-item>
-        <ion-item lines="full">
-            <ion-label position="floating">Transaction Date</ion-label>
-            <ion-datetime
-                (ionChange)="({})"
-                formControlName="date"></ion-datetime>
-        </ion-item>
-        <ion-item lines="full">
-            <ion-label position="floating">IBAN</ion-label>
-            <ion-input formControlName="iban" type="text" required></ion-input>
-            <span
-                slot="error"
-                *ngIf="
-                    transactionForm.get('account_holder').hasError('required')
-                "
-                >IBAN is required</span
-            >
-        </ion-item>
-        <ion-item lines="full">
-            <ion-label position="floating">Note</ion-label>
-            <ion-textarea formControlName="note" type="text"></ion-textarea>
-        </ion-item>
-    </form>
+    <ion-item lines="full">
+      <ion-label position="floating">Amount</ion-label>
+      <ion-input formControlName="amount" type="text"></ion-input>
+      <span slot="error" *ngIf="
+          transactionForm.get('amount').hasError('required') &&
+          transactionForm.get('amount').touched">
+        Amount is required
+      </span>
+    </ion-item>
+    <ion-item lines=" full">
+      <ion-label position="floating">Transaction Date</ion-label>
+      <ion-datetime (ionChange)="({})" formControlName="date"></ion-datetime>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">IBAN</ion-label>
+      <ion-input formControlName="iban" type="text" required></ion-input>
+      <span slot="error" *ngIf="
+          transactionForm.get('iban').hasError('required') &&
+          transactionForm.get('iban').touched">IBAN is required</span>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Note</ion-label>
+      <ion-textarea formControlName="note" type="text"></ion-textarea>
+    </ion-item>
+  </form>
 </ion-content>
