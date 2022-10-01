@@ -1,5 +1,19 @@
 ion-col {
     text-align: center;
+    display: flex;
+
+    ion-radio {
+        margin-right: 5px;
+    }
+}
+.no-record ion-col {
+    text-align: center;
+    display: block;
+    justify-content: center;
+}
+ion-grid {
+    align-items: center;
+    justify-content: center;
 }
 .trans_accord {
     display: flex;

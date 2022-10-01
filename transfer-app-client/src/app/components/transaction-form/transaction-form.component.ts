@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
-  Validators
+    FormControl,
+    FormGroup,
+    Validators
 } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ValidatorService } from 'angular-iban';
@@ -51,7 +51,15 @@ export class TransactionFormComponent implements OnInit {
     ngOnInit() {
         this.transactionForm = new FormGroup({
             account_holder: new FormControl('', Validators.required),
-            amount: new FormControl('', Validators.required),
+            amount: new FormControl(
+                '',
+                Validators.compose([
+                  Validators.required,
+                  Validators.minLength(2),
+                  Validators.maxLength(8),
+                  Validators.pattern(/^(?:\d*\.\d{1,2}|\d+)$/)
+                ])
+            ),
             date: new FormControl('', Validators.required),
             iban: new FormControl(
                 '',

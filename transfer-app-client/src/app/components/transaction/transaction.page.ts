@@ -23,6 +23,7 @@ import { TransactionResponse } from 'src/app/services/model/transactionResponse'
 })
 export class TransactionPage implements OnInit, OnDestroy {
     data: TransactionResponse[];
+    filteredData: TransactionResponse[];
     private componentDestroyed = new Subject();
 
     constructor(
@@ -46,7 +47,10 @@ export class TransactionPage implements OnInit, OnDestroy {
         this.store
             .select(getAllTransactions)
             .pipe(takeUntil(this.componentDestroyed))
-            .subscribe(transactions => (this.data = transactions));
+            .subscribe(transactions => {
+              this.data = transactions;
+              this.filteredData = this.data;
+            });
     }
 
     async editTransaction(e: Event, transaction: TransactionResponse) {
@@ -109,6 +113,30 @@ export class TransactionPage implements OnInit, OnDestroy {
         if (role === 'confirm') {
             this.store.dispatch(deleteTransaction({ transactionId: id }));
         }
+    }
+
+    searchTransaction(e: any) {
+      const searchStr = (e.target.value as string).toLowerCase();
+      if (!!searchStr) {
+        this.filteredData = this.data.filter(
+            rec =>
+                rec.account_holder.toLowerCase().includes(searchStr)
+                || rec.amount.toLowerCase().includes(searchStr)
+                || rec.iban.toLowerCase().includes(searchStr)
+                || rec.note.toLowerCase().includes(searchStr)
+        );
+      } else {
+        this.filteredData = this.data;
+      }
+    }
+
+    sortBy(e: any) {
+      const col = e.target.value;
+      if (!!e.target.value) {
+        this.filteredData = this.filteredData.slice().sort((a,b) => (a[col] as string).localeCompare(b[col]));
+      } else {
+        this.filteredData = this.filteredData.slice().sort((a,b) => a.account_holder.localeCompare(b.account_holder));
+      }
     }
 
     ngOnDestroy() {

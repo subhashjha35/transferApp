@@ -28,6 +28,21 @@
           transactionForm.get('amount').touched">
         Amount is required
       </span>
+      <span slot="error" *ngIf="
+          transactionForm.get('amount').hasError('pattern') &&
+          transactionForm.get('amount').touched">
+        Amount is in wrong format (Accepts only digits and dot)
+      </span>
+      <span slot="error" *ngIf="
+          transactionForm.get('amount').hasError('maxlength') &&
+          transactionForm.get('amount').dirty">
+        Atmost 8 digits required
+      </span>
+      <span slot="error" *ngIf="
+                transactionForm.get('amount').hasError('minlength') &&
+                transactionForm.get('amount').dirty">
+        Atleast 2 digits required
+      </span>
     </ion-item>
     <ion-item lines=" full">
       <ion-label position="floating">Transaction Date</ion-label>
@@ -38,7 +53,12 @@
       <ion-input formControlName="iban" type="text" required></ion-input>
       <span slot="error" *ngIf="
           transactionForm.get('iban').hasError('required') &&
-          transactionForm.get('iban').touched">IBAN is required</span>
+          transactionForm.get('iban').touched">IBAN is required
+      </span>
+      <span slot="error" *ngIf="
+          transactionForm.get('iban').hasError('iban') &&
+          transactionForm.get('iban').touched">IBAN is incorrect
+      </span>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Note</ion-label>

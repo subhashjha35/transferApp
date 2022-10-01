@@ -1,54 +1,68 @@
 <ion-header [translucent]="true">
-    <ion-toolbar color="primary">
-        <ion-title> Transfer App </ion-title>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title> Transfer App </ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar (keyup)="searchTransaction($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
-
 <ion-content>
-    <ion-accordion-group>
-        <ion-accordion [value]="i" *ngFor="let data of data; index as i">
-            <ion-item slot="header" color="light">
-                <ion-grid>
-                    <ion-row class="trans_accord">
-                        <ion-col size="1">
-                            <ion-icon
-                                name="pencil-outline"
-                                color="primary"
-                                (click)="editTransaction($event, data)">
-                            </ion-icon>
-                        </ion-col>
-                        <ion-col size="4">{{ data.account_holder }}</ion-col>
-                        <ion-col size="4">{{ data.amount }}</ion-col>
-                        <ion-col size="1">
-                            <ion-icon
-                                name="trash-outline"
-                                color="danger"
-                                (click)="deleteTransaction($event, data.id)">
-                            </ion-icon>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-item>
-            <div slot="content">
-                <ion-row>
-                    <ion-col
-                        ><strong>Date: </strong>{{ data.date | date :
-                        'dd-MM-yyyy' }}</ion-col
-                    >
-                    <ion-col
-                        ><strong>IBAN: </strong>{{ data.iban | ibanFormatter
-                        }}</ion-col
-                    >
-                </ion-row>
-                <ion-row>
-                    <ion-col><strong>Note: </strong>{{ data.note }}</ion-col>
-                </ion-row>
-            </div>
-        </ion-accordion>
-    </ion-accordion-group>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button>
-            <ion-icon name="add" (click)="createTransaction()"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
+  <ion-grid>
+    <ion-radio-group allow-empty-selection="true" name="radio-group" (ionChange)="sortBy($event)" #radioGroup>
+      <ion-row>
+        <ion-col>
+          <ion-label>Sort Transaction by: </ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-radio value="amount"></ion-radio>
+          <ion-label>Amount</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-radio value="date"></ion-radio>
+          <ion-label>Date</ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+  </ion-grid>
+  <ion-accordion-group *ngIf="filteredData.length">
+    <ion-accordion [value]="i" *ngFor="let record of filteredData; index as i">
+      <ion-item slot="header" color="light">
+        <ion-grid>
+          <ion-row class="trans_accord">
+            <ion-col size="1">
+              <ion-icon name="pencil-outline" color="primary" (click)="editTransaction($event, record)">
+              </ion-icon>
+            </ion-col>
+            <ion-col size="4">{{ record.account_holder }}</ion-col>
+            <ion-col size="4">{{ record.amount | currency : 'EUR': 'symbol': '3.2-2' : 'de-DE' }}</ion-col>
+            <ion-col size="1">
+              <ion-icon name="trash-outline" color="danger" (click)="deleteTransaction($event, record.id)">
+              </ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <div slot="content">
+        <ion-row>
+          <ion-col><strong>Date: </strong>{{ record.date | date : 'dd-MM-yyyy' }}</ion-col>
+          <ion-col><strong>IBAN: </strong>{{ record.iban | ibanFormatter }}</ion-col>
+        </ion-row>
+        <ion-row *ngIf="!!record.note">
+          <ion-col><strong>Note: </strong>{{ record.note }}</ion-col>
+        </ion-row>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+  <ion-grid *ngIf="!filteredData.length" class="no-record">
+    <ion-row>
+      <ion-col>
+        <h2>No Record Found</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add" (click)="createTransaction()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

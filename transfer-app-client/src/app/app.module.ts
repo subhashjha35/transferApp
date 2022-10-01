@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -16,6 +16,11 @@ import { AppComponent } from './app.component';
 import { TransactionEffects } from './effects/transaction.effects';
 import { metaReducers, reducers } from './reducers';
 import { TransactionService } from './services';
+
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 
 @NgModule({
     declarations: [AppComponent, TransactionFormComponent],
@@ -42,6 +47,7 @@ import { TransactionService } from './services';
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         TransactionService,
+        { provide: LOCALE_ID, useValue: 'de-DE' }
     ],
     bootstrap: [AppComponent],
 })
