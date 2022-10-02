@@ -15,7 +15,7 @@ import {
     listTransactionsSuccess,
     updateTransaction,
     updateTransactionFailed,
-    updateTransactionSuccess,
+    updateTransactionSuccess
 } from './../actions/transaction.actions';
 import { TransactionService } from './../services/api/transaction.service';
 import { TransactionEffects } from './transaction.effects';
@@ -32,13 +32,13 @@ describe('TransactionEffects', () => {
         TestBed.configureTestingModule({
             imports: [
                 StoreModule.forRoot({}),
-                EffectsModule.forRoot([TransactionEffects]),
+                EffectsModule.forRoot([TransactionEffects])
             ],
             providers: [
                 TransactionEffects,
                 mockProvider(TransactionService),
-                provideMockActions(() => actions$),
-            ],
+                provideMockActions(() => actions$)
+            ]
         });
 
         serviceSpy = TestBed.inject(
@@ -59,7 +59,7 @@ describe('TransactionEffects', () => {
                     m.cold('a', { a: [] })
                 );
                 const expected = m.cold('a', {
-                    a: listTransactionsSuccess({ transactions: [] }),
+                    a: listTransactionsSuccess({ transactions: [] })
                 });
 
                 await m
@@ -79,7 +79,7 @@ describe('TransactionEffects', () => {
                     m.cold('#', { a: new Error('error') })
                 );
                 const expected = m.cold('a', {
-                    a: listTransactionsFailed({ message: 'error' }),
+                    a: listTransactionsFailed({ message: 'error' })
                 });
 
                 await m
@@ -96,14 +96,14 @@ describe('TransactionEffects', () => {
             'can list all the transactions',
             marbles(async m => {
                 actions$ = m.cold('a', {
-                    a: createTransaction({ transaction: {} as any }),
+                    a: createTransaction({ transaction: {} as any })
                 });
 
                 serviceSpy.createTransaction.and.returnValue(
                     m.cold('a', { a: [] })
                 );
                 const expected = m.cold('a', {
-                    a: createTransactionSuccess({ transaction: [] as any }),
+                    a: createTransactionSuccess({ transaction: [] as any })
                 });
 
                 await m
@@ -118,14 +118,14 @@ describe('TransactionEffects', () => {
             'can handle transaction creation fetching errors',
             marbles(async m => {
                 actions$ = m.cold('a', {
-                    a: createTransaction({ transaction: {} as any }),
+                    a: createTransaction({ transaction: {} as any })
                 });
 
                 serviceSpy.createTransaction.and.returnValue(
                     m.cold('#', { a: new Error('error') })
                 );
                 const expected = m.cold('a', {
-                    a: createTransactionFailed({ message: 'error' }),
+                    a: createTransactionFailed({ message: 'error' })
                 });
 
                 await m
@@ -144,15 +144,15 @@ describe('TransactionEffects', () => {
                 actions$ = m.cold('a', {
                     a: updateTransaction({
                         id: 'testId',
-                        transaction: {} as any,
-                    }),
+                        transaction: {} as any
+                    })
                 });
 
                 serviceSpy.updateTransaction.and.returnValue(
                     m.cold('a', { a: [] })
                 );
                 const expected = m.cold('a', {
-                    a: updateTransactionSuccess({ transaction: [] as any }),
+                    a: updateTransactionSuccess({ transaction: [] as any })
                 });
 
                 await m
@@ -172,15 +172,15 @@ describe('TransactionEffects', () => {
                 actions$ = m.cold('a', {
                     a: updateTransaction({
                         id: 'testId',
-                        transaction: {} as any,
-                    }),
+                        transaction: {} as any
+                    })
                 });
 
                 serviceSpy.updateTransaction.and.returnValue(
                     m.cold('#', { a: new Error('error') })
                 );
                 const expected = m.cold('a', {
-                    a: updateTransactionFailed({ message: 'error' }),
+                    a: updateTransactionFailed({ message: 'error' })
                 });
 
                 await m
@@ -200,14 +200,14 @@ describe('TransactionEffects', () => {
             'can delete a transaction',
             marbles(async m => {
                 actions$ = m.cold('a', {
-                    a: deleteTransaction({ transactionId: 'testId' }),
+                    a: deleteTransaction({ transactionId: 'testId' })
                 });
 
                 serviceSpy.deleteTransaction.and.returnValue(
                     m.cold('a', { a: [] })
                 );
                 const expected = m.cold('a', {
-                    a: deleteTransactionSuccess(),
+                    a: deleteTransactionSuccess()
                 });
 
                 await m
@@ -224,14 +224,14 @@ describe('TransactionEffects', () => {
             'can handle transaction deletion errors',
             marbles(async m => {
                 actions$ = m.cold('a', {
-                    a: deleteTransaction({ transactionId: 'testId' }),
+                    a: deleteTransaction({ transactionId: 'testId' })
                 });
 
                 serviceSpy.deleteTransaction.and.returnValue(
                     m.cold('#', { a: new Error('error') })
                 );
                 const expected = m.cold('a', {
-                    a: deleteTransactionFailed({ message: 'error' }),
+                    a: deleteTransactionFailed({ message: 'error' })
                 });
 
                 await m

@@ -36,19 +36,19 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
             runtimeChecks: {
                 strictStateImmutability: true,
                 strictActionImmutability: true,
-                strictActionTypeUniqueness: true,
-            },
+                strictActionTypeUniqueness: true
+            }
         }),
         EffectsModule.forRoot([TransactionEffects]),
         environment.production
             ? []
-            : StoreDevtoolsModule.instrument({ maxAge: 25 }),
+            : StoreDevtoolsModule.instrument({ maxAge: 25 })
     ],
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         TransactionService,
         { provide: LOCALE_ID, useValue: 'de-DE' }
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

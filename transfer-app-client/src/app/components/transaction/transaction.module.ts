@@ -14,9 +14,9 @@ import { TransactionRoutingModule } from './transaction.routing.module';
         FormsModule,
         ReactiveFormsModule,
         TransactionRoutingModule,
-        AngularIbanModule,
+        AngularIbanModule
     ],
     declarations: [TransactionPage],
-    providers: [IbanFormatterPipe],
+    providers: [IbanFormatterPipe]
 })
 export class TransactionModule {}

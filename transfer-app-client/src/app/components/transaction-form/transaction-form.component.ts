@@ -1,10 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import {
-    FormControl,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ValidatorService } from 'angular-iban';
 
@@ -19,7 +15,7 @@ export interface Transaction {
 @Component({
     selector: 'app-transaction-form',
     templateUrl: './transaction-form.component.html',
-    styleUrls: ['./transaction-form.component.scss'],
+    styleUrls: ['./transaction-form.component.scss']
 })
 export class TransactionFormComponent implements OnInit {
     @Input() transaction: Transaction = undefined;
@@ -43,7 +39,7 @@ export class TransactionFormComponent implements OnInit {
             date: this.formatDate(
                 this.transactionForm.get('date').value,
                 'yyyy-MM-dd'
-            ),
+            )
         };
         return this.modalCtrl.dismiss(formValues, 'save');
     }
@@ -54,10 +50,10 @@ export class TransactionFormComponent implements OnInit {
             amount: new FormControl(
                 '',
                 Validators.compose([
-                  Validators.required,
-                  Validators.minLength(2),
-                  Validators.maxLength(8),
-                  Validators.pattern(/^(?:\d*\.\d{1,2}|\d+)$/)
+                    Validators.required,
+                    Validators.minLength(2),
+                    Validators.maxLength(8),
+                    Validators.pattern(/^(?:\d*\.\d{1,2}|\d+)$/)
                 ])
             ),
             date: new FormControl('', Validators.required),
@@ -65,10 +61,10 @@ export class TransactionFormComponent implements OnInit {
                 '',
                 Validators.compose([
                     Validators.required,
-                    ValidatorService.validateIban,
+                    ValidatorService.validateIban
                 ])
             ),
-            note: new FormControl(''),
+            note: new FormControl('')
         });
 
         if (!!this.transaction) {

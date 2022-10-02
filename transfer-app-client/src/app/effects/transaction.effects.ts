@@ -17,13 +17,13 @@ export class TransactionEffects {
                 this.service.getAllTransactions().pipe(
                     map(transactions =>
                         transactionActions.listTransactionsSuccess({
-                            transactions,
+                            transactions
                         })
                     ),
                     catchError((error: HttpErrorResponse) =>
                         of<Action>(
                             transactionActions.listTransactionsFailed({
-                                message: parseErrorMessage(error),
+                                message: parseErrorMessage(error)
                             })
                         )
                     )
@@ -39,13 +39,13 @@ export class TransactionEffects {
                 this.service.createTransaction(action.transaction).pipe(
                     map(transaction =>
                         transactionActions.createTransactionSuccess({
-                            transaction,
+                            transaction
                         })
                     ),
                     catchError((error: HttpErrorResponse) =>
                         of<Action>(
                             transactionActions.createTransactionFailed({
-                                message: parseErrorMessage(error),
+                                message: parseErrorMessage(error)
                             })
                         )
                     )
@@ -63,13 +63,13 @@ export class TransactionEffects {
                     .pipe(
                         map(transaction =>
                             transactionActions.updateTransactionSuccess({
-                                transaction,
+                                transaction
                             })
                         ),
                         catchError((error: HttpErrorResponse) =>
                             of<Action>(
                                 transactionActions.updateTransactionFailed({
-                                    message: parseErrorMessage(error),
+                                    message: parseErrorMessage(error)
                                 })
                             )
                         )
@@ -87,7 +87,7 @@ export class TransactionEffects {
                     catchError((error: HttpErrorResponse) =>
                         of<Action>(
                             transactionActions.deleteTransactionFailed({
-                                message: parseErrorMessage(error),
+                                message: parseErrorMessage(error)
                             })
                         )
                     )
@@ -96,8 +96,8 @@ export class TransactionEffects {
         )
     );
 
-  constructor(
-    private actions$: Actions,
-    private service: TransactionService
-  ) { }
+    constructor(
+        private actions$: Actions,
+        private service: TransactionService
+    ) {}
 }

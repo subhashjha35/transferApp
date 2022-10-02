@@ -5,12 +5,12 @@ import { ActionsSubject, Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
-  createTransaction,
-  deleteTransaction,
-  deleteTransactionSuccess,
-  listTransactions,
-  updateTransaction,
-  updateTransactionSuccess
+    createTransaction,
+    deleteTransaction,
+    deleteTransactionSuccess,
+    listTransactions,
+    updateTransaction,
+    updateTransactionSuccess
 } from 'src/app/actions/transaction.actions';
 import { TransactionFormComponent } from 'src/app/components/transaction-form/transaction-form.component';
 import { getAllTransactions } from 'src/app/reducers';
@@ -19,7 +19,7 @@ import { TransactionResponse } from 'src/app/services/model/transactionResponse'
 @Component({
     selector: 'app-transaction-page',
     templateUrl: 'transaction.page.html',
-    styleUrls: ['transaction.page.scss'],
+    styleUrls: ['transaction.page.scss']
 })
 export class TransactionPage implements OnInit, OnDestroy {
     data: TransactionResponse[];
@@ -48,8 +48,8 @@ export class TransactionPage implements OnInit, OnDestroy {
             .select(getAllTransactions)
             .pipe(takeUntil(this.componentDestroyed))
             .subscribe(transactions => {
-              this.data = transactions;
-              this.filteredData = this.data;
+                this.data = transactions;
+                this.filteredData = this.data;
             });
     }
 
@@ -58,7 +58,7 @@ export class TransactionPage implements OnInit, OnDestroy {
 
         const modal = await this.modalCtrl.create({
             component: TransactionFormComponent,
-            componentProps: { transaction },
+            componentProps: { transaction }
         });
 
         modal.present();
@@ -72,7 +72,7 @@ export class TransactionPage implements OnInit, OnDestroy {
 
     async createTransaction() {
         const modal = await this.modalCtrl.create({
-            component: TransactionFormComponent,
+            component: TransactionFormComponent
         });
 
         modal.present();
@@ -97,16 +97,16 @@ export class TransactionPage implements OnInit, OnDestroy {
                     role: 'cancel',
                     handler: () => {
                         this.alertControl.dismiss(null, 'cancel');
-                    },
+                    }
                 },
                 {
                     text: 'Yes',
                     role: 'confirm',
                     handler: () => {
                         this.alertControl.dismiss(null, 'confirm');
-                    },
-                },
-            ],
+                    }
+                }
+            ]
         });
         alert.present();
         const { role } = await alert.onWillDismiss();
@@ -116,27 +116,33 @@ export class TransactionPage implements OnInit, OnDestroy {
     }
 
     searchTransaction(e: any) {
-      const searchStr = (e.target.value as string).toLowerCase();
-      if (!!searchStr) {
-        this.filteredData = this.data.filter(
-            rec =>
-                rec.account_holder.toLowerCase().includes(searchStr)
-                || rec.amount.toLowerCase().includes(searchStr)
-                || rec.iban.toLowerCase().includes(searchStr)
-                || rec.note.toLowerCase().includes(searchStr)
-        );
-      } else {
-        this.filteredData = this.data;
-      }
+        const searchStr = (e.target.value as string).toLowerCase();
+        if (!!searchStr) {
+            this.filteredData = this.data.filter(
+                rec =>
+                    rec.account_holder.toLowerCase().includes(searchStr) ||
+                    rec.amount.toLowerCase().includes(searchStr) ||
+                    rec.iban.toLowerCase().includes(searchStr) ||
+                    rec.note.toLowerCase().includes(searchStr)
+            );
+        } else {
+            this.filteredData = this.data;
+        }
     }
 
     sortBy(e: any) {
-      const col = e.target.value;
-      if (!!e.target.value) {
-        this.filteredData = this.filteredData.slice().sort((a,b) => (a[col] as string).localeCompare(b[col]));
-      } else {
-        this.filteredData = this.filteredData.slice().sort((a,b) => a.account_holder.localeCompare(b.account_holder));
-      }
+        const col = e.target.value;
+        if (!!e.target.value) {
+            this.filteredData = this.filteredData
+                .slice()
+                .sort((a, b) => (a[col] as string).localeCompare(b[col]));
+        } else {
+            this.filteredData = this.filteredData
+                .slice()
+                .sort((a, b) =>
+                    a.account_holder.localeCompare(b.account_holder)
+                );
+        }
     }
 
     ngOnDestroy() {

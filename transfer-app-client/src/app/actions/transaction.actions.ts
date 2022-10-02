@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import {
     Transaction,
-    TransactionResponse,
+    TransactionResponse
 } from './../../../../server/src/model/transaction.model';
 
 export const listTransactions = createAction('[Transaction] List Transactions');

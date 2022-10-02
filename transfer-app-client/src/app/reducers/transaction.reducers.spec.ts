@@ -1,7 +1,7 @@
 import {
     createTransactionSuccess,
     listTransactions,
-    listTransactionsFailed,
+    listTransactionsFailed
 } from '../actions/transaction.actions';
 import { listTransactionsSuccess } from './../actions/transaction.actions';
 import * as fromTransaction from './transaction.reducers';
@@ -22,14 +22,14 @@ describe('TransactionReducer', () => {
                 fromTransaction.reducers(
                     initialState,
                     listTransactionsSuccess({
-                        transactions: [{ name: 'name1' }] as any,
+                        transactions: [{ name: 'name1' }] as any
                     })
                 )
             ).toEqual({
                 ...initialState,
                 isLoaded: true,
                 isLoading: false,
-                list: [{ name: 'name1' }] as any,
+                list: [{ name: 'name1' }] as any
             });
         });
     });
@@ -51,7 +51,7 @@ describe('TransactionReducer', () => {
                 fromTransaction.reducers(
                     initialState,
                     createTransactionSuccess({
-                        transaction: { name: 'name1' } as any,
+                        transaction: { name: 'name1' } as any
                     })
                 )
             ).toEqual({ ...initialState, list: [{ name: 'name1' }] as any });

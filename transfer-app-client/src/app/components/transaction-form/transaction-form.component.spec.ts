@@ -45,12 +45,9 @@ describe('TransactionFormComponent', () => {
                 IonButton,
                 IonToolbar,
                 IonTitle
-            ),
+            )
         ],
-        providers: [
-            provideMockStore({}),
-            mockProvider(ModalController),
-        ],
+        providers: [provideMockStore({}), mockProvider(ModalController)]
     });
 
     beforeEach(() => {
@@ -76,7 +73,7 @@ describe('TransactionFormComponent', () => {
                 iban: 'iban123',
                 note: 'test notes',
                 amount: '1234',
-                date: '11/01/2021',
+                date: '11/01/2021'
             };
             // spectator.fixture.detectChanges();
         });
@@ -116,7 +113,7 @@ describe('TransactionFormComponent', () => {
                     iban: 'iban123',
                     note: 'test notes',
                     amount: '1234',
-                    date: '11-01-2021',
+                    date: '11-01-2021'
                 };
                 spyOn(component, 'formatDate').and.returnValue('2021-11-01');
             });
@@ -133,7 +130,7 @@ describe('TransactionFormComponent', () => {
             it('should call modalCtrl.dismiss method', () => {
                 const expected = {
                     ...transactionData,
-                    date: '2021-11-01',
+                    date: '2021-11-01'
                 };
                 component.transactionForm.setValue(transactionData);
                 spectator.detectChanges();

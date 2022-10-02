@@ -1,26 +1,26 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  AlertController,
-  IonAccordion,
-  IonAccordionGroup,
-  IonCol,
-  IonContent,
-  IonFab,
-  IonFabButton,
-  IonGrid,
-  IonHeader,
-  IonIcon,
-  IonItem,
-  IonRow,
-  IonTitle,
-  IonToolbar,
-  ModalController
+    AlertController,
+    IonAccordion,
+    IonAccordionGroup,
+    IonCol,
+    IonContent,
+    IonFab,
+    IonFabButton,
+    IonGrid,
+    IonHeader,
+    IonIcon,
+    IonItem,
+    IonRow,
+    IonTitle,
+    IonToolbar,
+    ModalController
 } from '@ionic/angular';
 import {
-  createComponentFactory,
-  mockProvider,
-  Spectator,
-  SpyObject
+    createComponentFactory,
+    mockProvider,
+    Spectator,
+    SpyObject
 } from '@ngneat/spectator';
 import { marbles } from 'rxjs-marbles';
 
@@ -33,10 +33,10 @@ import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AngularIbanModule } from 'angular-iban';
 import { MockComponents } from 'ng-mocks';
 import {
-  createTransaction,
-  deleteTransaction,
-  listTransactions,
-  updateTransaction
+    createTransaction,
+    deleteTransaction,
+    listTransactions,
+    updateTransaction
 } from 'src/app/actions/transaction.actions';
 import { AppState } from 'src/app/reducers';
 import { TransactionPage } from './transaction.page';
@@ -49,7 +49,7 @@ const transactionsData = [
         date: '2022-10-04',
         iban: 'ES9121000418450200051332',
         note: 'sdasdfasdfasdf',
-        id: '1ff15a27cb28b088',
+        id: '1ff15a27cb28b088'
     },
     {
         account_holder: 'ewerqewr',
@@ -57,15 +57,15 @@ const transactionsData = [
         date: '06-09-2022',
         iban: 'IT60X0542811101000000123456',
         note: 'sdadf sdfasdf',
-        id: 'cbe414c29366bdd4',
-    },
+        id: 'cbe414c29366bdd4'
+    }
 ];
 const initialState: AppState = {
     transactions: {
         list: transactionsData,
         isLoaded: true,
-        isLoading: false,
-    },
+        isLoading: false
+    }
 };
 
 describe('TransactionPage', () => {
@@ -95,14 +95,14 @@ describe('TransactionPage', () => {
                 IonRow,
                 IonCol,
                 IonItem
-            ),
+            )
         ],
         providers: [
             provideMockStore({ initialState }),
             mockProvider(ModalController),
             mockProvider(AlertController),
             { provide: LOCALE_ID, useValue: 'de-DE' }
-        ],
+        ]
     });
 
     beforeEach(() => {
@@ -163,8 +163,8 @@ describe('TransactionPage', () => {
                 present: () => {},
                 onWillDismiss: () => ({
                     data: transactionsData[0],
-                    role: 'save',
-                }),
+                    role: 'save'
+                })
             });
 
             await component.createTransaction();
@@ -179,7 +179,7 @@ describe('TransactionPage', () => {
             alertControllerSpy.create.and.returnValue({
                 create: () => {},
                 present: () => {},
-                onWillDismiss: () => ({ data: null, role: 'confirm' }),
+                onWillDismiss: () => ({ data: null, role: 'confirm' })
             });
 
             const event = new MouseEvent('click');
@@ -198,12 +198,12 @@ describe('TransactionPage', () => {
                 date: '2022-10-04',
                 iban: 'ES9121000418450200051332',
                 note: 'sdasdfasdfasdf',
-                id: '1ff15a27cb28b088',
+                id: '1ff15a27cb28b088'
             };
             modalControllerSpy.create.and.returnValue({
                 create: () => {},
                 present: () => {},
-                onWillDismiss: () => ({ data, role: 'save' }),
+                onWillDismiss: () => ({ data, role: 'save' })
             });
 
             const event = new MouseEvent('click');
@@ -221,41 +221,41 @@ describe('TransactionPage', () => {
                     account_holder: 'name1',
                     amount: '1234',
                     date: '2022-10-04',
-                    note: 'This is note 1',
+                    note: 'This is note 1'
                 },
                 {
                     account_holder: 'name2',
                     amount: '1233',
                     date: '2022-10-04',
-                    note: 'This is note 2',
+                    note: 'This is note 2'
                 },
                 {
                     account_holder: 'name3',
                     amount: '23233',
                     date: '2022-10-04',
-                    note: 'This is note 2',
-                },
+                    note: 'This is note 2'
+                }
             ] as any;
 
             const expected = [
-              {
-                account_holder: 'name2',
-                amount: '1233',
-                date: '2022-10-04',
-                note: 'This is note 2',
-              },
-              {
-                account_holder: 'name1',
-                amount: '1234',
-                date: '2022-10-04',
-                note: 'This is note 1',
-              },
-              {
-                account_holder: 'name3',
-                amount: '23233',
-                date: '2022-10-04',
-                note: 'This is note 2',
-              },
+                {
+                    account_holder: 'name2',
+                    amount: '1233',
+                    date: '2022-10-04',
+                    note: 'This is note 2'
+                },
+                {
+                    account_holder: 'name1',
+                    amount: '1234',
+                    date: '2022-10-04',
+                    note: 'This is note 1'
+                },
+                {
+                    account_holder: 'name3',
+                    amount: '23233',
+                    date: '2022-10-04',
+                    note: 'This is note 2'
+                }
             ] as any;
             spectator.detectChanges();
             let event = { target: { value: 'amount' } };
@@ -277,7 +277,7 @@ describe('TransactionPage', () => {
                     date: '2022-10-04',
                     iban: 'ES9121000418450200051332',
                     note: 'This is note 1',
-                    id: '1ff15a27cb28b088',
+                    id: '1ff15a27cb28b088'
                 },
                 {
                     account_holder: 'sfasdf',
@@ -285,8 +285,8 @@ describe('TransactionPage', () => {
                     date: '2022-10-04',
                     iban: 'ES9121000418450200051332',
                     note: 'This is note 2',
-                    id: '1ff15a27cb28b088',
-                },
+                    id: '1ff15a27cb28b088'
+                }
             ];
 
             const expected = [
@@ -296,8 +296,8 @@ describe('TransactionPage', () => {
                     date: '2022-10-04',
                     iban: 'ES9121000418450200051332',
                     note: 'This is note 2',
-                    id: '1ff15a27cb28b088',
-                },
+                    id: '1ff15a27cb28b088'
+                }
             ];
             component.searchTransaction({ target: { value: 'note 2' } });
             expect(component.filteredData).toEqual(expected);

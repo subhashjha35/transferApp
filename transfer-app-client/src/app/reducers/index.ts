@@ -1,9 +1,9 @@
 import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
+    ActionReducer,
+    ActionReducerMap,
+    createFeatureSelector,
+    createSelector,
+    MetaReducer
 } from '@ngrx/store';
 import { storeLogger } from 'ngrx-store-logger';
 import * as transactionReducers from './transaction.reducers';
@@ -12,7 +12,7 @@ export interface AppState {
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-    transactions: transactionReducers.reducers,
+    transactions: transactionReducers.reducers
 };
 
 export const getTransactionState =
@@ -28,6 +28,7 @@ export const getTransactionForId = (id: string) =>
         state.find(transaction => transaction.id === id)
     );
 
-export const logger = (reducer: ActionReducer<AppState>) => storeLogger()(reducer);
+export const logger = (reducer: ActionReducer<AppState>) =>
+    storeLogger()(reducer);
 
 export const metaReducers: MetaReducer<AppState>[] = [logger];

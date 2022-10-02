@@ -6,7 +6,7 @@ describe('ErrorMessageParserHelper', () => {
             'error',
             { error: 'error' },
             { error: { error: 'error' } },
-            { message: 'error' },
+            { message: 'error' }
         ];
         errorList.forEach(e => {
             expect(parseErrorMessage(e)).toEqual('error');

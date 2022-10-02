@@ -7,13 +7,13 @@ const routes: Routes = [
         loadChildren: () =>
             import('./components/transaction/transaction.module').then(
                 m => m.TransactionModule
-            ),
-    },
+            )
+    }
 ];
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+        RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
     ],
-    exports: [RouterModule],
+    exports: [RouterModule]
 })
 export class AppRoutingModule {}

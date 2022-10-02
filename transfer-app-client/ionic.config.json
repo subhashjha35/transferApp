@@ -1,7 +1,7 @@
 {
-  "name": "transfer-app-client",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
+    "name": "transfer-app-client",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular"
 }
