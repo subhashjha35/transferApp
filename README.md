@@ -6,12 +6,8 @@ Transfer App is a CRUD application using Angular and NgRx for UI and Express JS 
 <BR><BR>
 
 ## SERVER
-<<<<<<< HEAD
 
-The server part has been created with the help of NodeJS ExpressJS and the documentation of the API has been done with `OpenAPI`. For running the server, reach the root directory of the backend which is `server` and run the following command.
-=======
 The server part has been created with the help of NodeJS ExpressJS and the documentation of the API has been done with `Swagger`. For running the server, reach the root directory of the backend which is `server` and run the following command.
->>>>>>> d9107d30c09bd7532f58c16b3825149a9e1bfd12
 
 ```
 yarn install
